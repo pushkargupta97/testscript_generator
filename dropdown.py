@@ -30,7 +30,8 @@ class Dropdown:
                 print('text')
         except NoSuchElementException:
                 flag=0
-                pass
+                print('the element '+array[3]+' was not found')
+                return flag
             
         #print(array[1])
         #print(array[3])
@@ -39,3 +40,5 @@ class Dropdown:
         
         dropdown = Select(elem)
         dropdown.select_by_visible_text(array[1])
+        
+        return flag

@@ -9,7 +9,7 @@ from selenium import webdriver
 #sample = ["opem 'www.mfs.com'", "click on 'Search'","enter text 'Mutual Fund' in the 'Search' box"]
 #sample = ["open 'www.mfs.com'","click on 'left-container'", "select 'Australia' from 'Change your location' dropdown list'"]
 sample = ["open 'www.mfs.com'",
-          "click on 'Register'",
+          "click on 'This si su'",
           "click on 'Investment Professional'",
           "click on 'UNITED STATES'",
           "click on 'Financial Advisor'",
@@ -30,20 +30,23 @@ for sen in sample:
     if(classifier.predict(sample1) ==0):
         print("button")
         button = Button()
-        button.action(str(sen),driver) 
+        flag = button.action(str(sen),driver) 
         
     if(classifier.predict(sample1) ==3):
         print("dropdown")
         dropdown = Dropdown()
-        dropdown.action(str(sen),driver)
+        flag = dropdown.action(str(sen),driver)
         
     if(classifier.predict(sample1) ==1):
         print("get")
         get = Get()
-        get.browse(str(sen),driver)
+        flag = get.browse(str(sen),driver)
         
     if(classifier.predict(sample1) ==2):
         
         print("textfield")
         textfield = Textfield()
-        textfield.action(str(sen),driver)
+        flag = textfield.action(str(sen),driver)
+        
+    if(flag == 0) :
+        break

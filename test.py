@@ -9,8 +9,8 @@ from selenium import webdriver
 #sample = ["opem 'www.mfs.com'", "click on 'Search'","enter text 'Mutual Fund' in the 'Search' box"]
 #sample = ["open 'www.mfs.com'","click on 'left-container'", "select 'Australia' from 'Change your location' dropdown list'"]
 sample = ["open 'www.mfs.com'",
-          "click on 'This si su'",
-          "click on 'Investment Professional'",
+          "click on 'Register'",
+          "click on 'INVESTMENT PROFESSIONAL'",
           "click on 'UNITED STATES'",
           "click on 'Financial Advisor'",
           "click on 'I Agree'",

@@ -30,15 +30,24 @@ class Dropdown:
                 print('text')
         except NoSuchElementException:
                 flag=0
-                print('the element '+array[3]+' was not found')
-                return flag
+                pass
+            
+        try:
+            if(flag==0):
+                flag=1
+                temp = "//*[text()='"+ array[1]+"']/.."
+                elem = driver.find_element_by_xpath(temp)
+                print('super')
+        except NoSuchElementException:
+                flag=0
+                pass
+            
             
         #print(array[1])
         #print(array[3])
         #temp = "//*[text()='"+ array[3]+"']/.."
         
-        
-        dropdown = Select(elem)
-        dropdown.select_by_visible_text(array[1])
-        
-        return flag
+        if(elem.is_enabled()):
+            dropdown = Select(elem)
+            dropdown.select_by_visible_text(array[1])
+            print("Yo")

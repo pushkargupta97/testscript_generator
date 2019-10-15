@@ -38,13 +38,17 @@ class Textfield:
                 print('this is contains name')
         except NoSuchElementException :
             flag =0
-            print("the element "+array[3]+" was not found")
-            return flag
+            pass
         
+        try:
+            if(inputbox.is_displayed()):
+                print("Yo")
+        except:
+            print("Neh")
+            pass
         
-        #print(flag)
+        print(flag)
         inputbox.clear()
         inputbox.send_keys(array[1])
-        inputbox.send_keys(Keys.ENTER)
+        #inputbox.send_keys(Keys.ENTER)
         
-        return flag

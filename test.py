@@ -5,23 +5,35 @@ from dropdown import Dropdown
 import model
 from selenium import webdriver
 
-#sample= ["open 'www.mfs.com'","click on 'Menu'","click on 'Products & Strategies'", "click on 'Mutual Funds'", "Select 'Massachusetts Investors Trust' from 'Select a Fund' dropdownlist"]
+sample= ["open 'www.mfs.com'","click on 'Menu'","click on 'Products & Strategies'", "click on 'Mutual Funds'", "Select 'Massachusetts Investors Trust' from 'Select a Fund' dropdownlist"]
 #sample = ["opem 'www.mfs.com'", "click on 'Search'","enter text 'Mutual Fund' in the 'Search' box"]
 #sample = ["open 'www.mfs.com'","click on 'left-container'", "select 'Australia' from 'Change your location' dropdown list'"]
-sample = ["open 'www.mfs.com'",
+"""sample = ["open 'www.mfs.com'",
           "click on 'Register'",
           "click on 'INVESTMENT PROFESSIONAL'",
           "click on 'UNITED STATES'",
           "click on 'Financial Advisor'",
-          "click on 'I Agree'",
-          "enter 'password' in 'Password'"
+          "click on 'I AGREE'",
+          "enter 'password' in 'password'",
+          "ENTER 'BAT123' IN 'userName'",
           ]
+"""
+"""   
+sample = ["click on 'Investment Professional'"
+         "select 'UNITED STATES' from 'Change your location' dropdown",
+         "select 'INDIVIDUAL INVESTOR' from 'Select your role'"
+         ]
 
+"""
 
 
 driver = webdriver.Chrome()
 
+
+
 for sen in sample:
+    
+    
     
     sample1 = [sen]
     sample1 = vectorizer.transform(sample1).toarray()
@@ -30,23 +42,20 @@ for sen in sample:
     if(classifier.predict(sample1) ==0):
         print("button")
         button = Button()
-        flag = button.action(str(sen),driver) 
+        button.action(str(sen),driver) 
         
     if(classifier.predict(sample1) ==3):
         print("dropdown")
         dropdown = Dropdown()
-        flag = dropdown.action(str(sen),driver)
+        dropdown.action(str(sen),driver)
         
     if(classifier.predict(sample1) ==1):
         print("get")
         get = Get()
-        flag = get.browse(str(sen),driver)
+        get.browse(str(sen),driver)
         
     if(classifier.predict(sample1) ==2):
         
         print("textfield")
         textfield = Textfield()
-        flag = textfield.action(str(sen),driver)
-        
-    if(flag == 0) :
-        break
+        textfield.action(str(sen),driver)

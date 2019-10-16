@@ -25,26 +25,44 @@ sample3 = ["open 'www.mfs.com'",
           "select 'Australia' from 'Change your location' dropdown list'"]
 
 sample4 = ["open 'www.mfs.com'",
-          "click on 'Register'",
+          "'Register' is clicked",
           "click on 'INVESTMENT PROFESSIONAL'",
           "click on 'UNITED STATES'",
           "click on 'Financial Advisor'",
           "click on 'I AGREE'",
           "enter 'password' in 'password'",
           "ENTER 'BAT123' IN 'userName'",
+          "Click on 'CANCEL REGISTRATION'"
           ]
-  
+
 sample5 = ["click on 'Investment Professional'"
          "select 'UNITED STATES' from 'Change your location' dropdown",
          "select 'INDIVIDUAL INVESTOR' from 'Select your role'"
          ]
 
 
+sample6 = ["open 'www.amazon.in'",
+            "click on 'Best Sellers'",
+            "click on 'Movers and Shakers'"
+        ]
+
+sample7 = ["open 'www.facebook.com'",
+           "Enter 'Bat123' in 'email'",
+           "Enter 'password' in 'pass'",
+           "Enter 'Batman' in 'First nam'",
+           "Enter 'Begins' in 'Surname'",
+           "Enter '825416973' in 'Mobile number or email address'"]
+sample8 =  ["open 'www.mfs.com'",
+          "'Login' is clicked",
+          "enter 'password' in 'Password'",
+          "ENTER 'BAT123' IN 'Username'",
+          "click on 'LOGIN'"
+          ]
 
 gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25537))
 driver = webdriver.Chrome()
 
-sample = sample4 
+sample = sample8
 
 for sen in sample:
     

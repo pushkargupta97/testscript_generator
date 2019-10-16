@@ -81,24 +81,25 @@ class Button:
         
         validFlag = 0 
         if(flag==1):
-            try:
-                elem.click()
-                print("click")
-            except ElementNotInteractableException:
-                Hover = ActionChains(driver).move_to_element(elem).click().perform()
-                
-                print("NotInteractable Hover")
-            except ElementClickInterceptedException:
-                Hover = ActionChains(driver).move_to_element(elem).click().perform()
-                print("Intercepted hover")
-         
-        
-            try:
+             try:
                 if(elem.is_enabled()):
                     print('pass')
                     validFlag = 1 
-            except:
+             except:
+                print('valid flag didnt work')
                 pass
+            
+             try:
+                elem.click()
+                print("click")
+             except ElementNotInteractableException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                
+                print("NotInteractable Hover")
+             except ElementClickInterceptedException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                print("Intercepted hover")
+       
         else:
             print('element not found')
         

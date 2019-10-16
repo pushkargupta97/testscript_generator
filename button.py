@@ -1,16 +1,18 @@
 from selenium import webdriver
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.common.exceptions import ElementClickInterceptedException
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
-#import test
+
 
 
 class Button:
         
-    def action(self,sentence,driver):  #,validCheck
+    def action(self,sentence,driver):  
             
         array = sentence.split("'")
        
@@ -76,26 +78,31 @@ class Button:
             
 
         driver.implicitly_wait(2)
-       
-        try:
-            elem.click()
-            print("click")
-        except ElementNotInteractableException:
-            Hover = ActionChains(driver).move_to_element(elem).click().perform()
-            
-            print("NotInteractable Hover")
-        except ElementClickInterceptedException:
-            Hover = ActionChains(driver).move_to_element(elem).click().perform()
-            print("Intercepted hover")
+        
+        validFlag = 0 
+        if(flag==1):
+            try:
+                elem.click()
+                print("click")
+            except ElementNotInteractableException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                
+                print("NotInteractable Hover")
+            except ElementClickInterceptedException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                print("Intercepted hover")
          
         
-        try:
-            if(elem.is_enabled()):
-                print("pass")
-        except:
-            pass
-    
-        return flag    
+            try:
+                if(elem.is_enabled()):
+                    print('pass')
+                    validFlag = 1 
+            except:
+                pass
+        else:
+            print('element not found')
+        
+        return flag and validFlag    
             
                
             

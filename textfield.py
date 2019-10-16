@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
-#import test
+
 
 class Textfield:
     
@@ -40,15 +39,19 @@ class Textfield:
             flag =0
             pass
         
+        validFlag = 0
+        
+        if(flag == 1):
+            inputbox.clear()
+            inputbox.send_keys(array[1])
+            
         try:
             if(inputbox.is_displayed()):
                 print("Yo")
+                validFlag = 1
         except:
             print("Neh")
-            pass
-        
-        print(flag)
-        inputbox.clear()
-        inputbox.send_keys(array[1])
+            
+        return flag and validFlag
         #inputbox.send_keys(Keys.ENTER)
         

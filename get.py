@@ -7,3 +7,5 @@ class Get:
         array = url.split("'")
         print("http://"+array[1])
         driver.get("http://"+array[1])
+        
+        return 1

@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-#import test
+
 
 
 class Dropdown:
@@ -46,8 +46,18 @@ class Dropdown:
         #print(array[1])
         #print(array[3])
         #temp = "//*[text()='"+ array[3]+"']/.."
+        validFlag = 0
         
         if(elem.is_enabled()):
+            print("Yo")
+            validFlag =1 
+        
+        if(flag == 1):
             dropdown = Select(elem)
             dropdown.select_by_visible_text(array[1])
-            print("Yo")
+        else:
+            print('elements not found')
+            
+        
+            
+        return flag and validFlag 

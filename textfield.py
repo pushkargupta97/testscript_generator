@@ -7,6 +7,7 @@ class Textfield:
     
     def action(self,sentence,driver):
        
+        driver.implicitly_wait(5)
         array = sentence.split("'")
         flag = 0 ;
         try :
@@ -32,23 +33,34 @@ class Textfield:
         try :
             if(flag == 0):
                 flag = 1
+                temp = "//input[@id = '"+array[3]+"']"
+                inputbox = driver.find_element_by_xpath(temp)
+                print('this is id')
+        except NoSuchElementException :
+            flag =0
+            pass
+        
+        try :
+            if(flag == 0):
+                flag = 1
                 temp = "//input[contains(@name,'"+array[3]+"')]"
                 inputbox = driver.find_element_by_xpath(temp)
                 print('this is contains name')
         except NoSuchElementException :
             flag =0
             pass
-         
-        try :
-            if(flag == 0):
-                flag = 1
-                temp = "//*[contains(text(),'"+array[3]+"')]//..//input"
-                inputbox = driver.find_element_by_xpath(temp)
-                print('this is contains placeholder')
-        except NoSuchElementException :
-            flag =0
-            pass    
         
+        try:
+            if(flag==0):
+               temp = "//*[contains(@value,'"+array[3]+"')]"
+               elem = driver.find_element_by_xpath(temp)
+               flag=1
+               print(temp)
+               print('this is @contains value')
+        except NoSuchElementException:
+            flag=0
+            pass            
+     
         
         
         try :
@@ -61,6 +73,17 @@ class Textfield:
             flag =0
             pass
         
+        try :
+            if(flag == 0):
+                flag = 1
+                temp = "//*[contains(text(),'"+array[3]+"')]//..//input"
+                inputbox = driver.find_element_by_xpath(temp)
+                print('this is contains placeholder')
+        except NoSuchElementException :
+            flag =0
+            pass    
+        
+        
         validFlag = 0
         
         if(flag == 1):
@@ -69,10 +92,10 @@ class Textfield:
             
             try:
                 if(inputbox.is_displayed()):
-                    print("Yo")
+                    print("pass")
                     validFlag = 1
             except:
-                print("Neh")
+                print("fail")
         else:
             print('element not found')    
         return flag and validFlag

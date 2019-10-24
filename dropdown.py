@@ -11,6 +11,17 @@ class Dropdown:
         array = sentence.split("'")
         flag = 0
         
+        
+        try:
+            if(flag==0):
+                flag=1
+                temp = "//*[text()='"+ array[1]+"']/.."
+                elem = driver.find_element_by_xpath(temp)
+                print('super')
+        except NoSuchElementException:
+                flag=0
+                pass
+        
         try :
             if(flag==0):
                 flag =1 
@@ -32,31 +43,26 @@ class Dropdown:
                 flag=0
                 pass
             
-        try:
-            if(flag==0):
-                flag=1
-                temp = "//*[text()='"+ array[1]+"']/.."
-                elem = driver.find_element_by_xpath(temp)
-                print('super')
-        except NoSuchElementException:
-                flag=0
-                pass
+        
             
             
         #print(array[1])
         #print(array[3])
         #temp = "//*[text()='"+ array[3]+"']/.."
-        validFlag = 0
         
-        if(elem.is_enabled()):
-            print("Yo")
-            validFlag =1 
         
         if(flag == 1):
             dropdown = Select(elem)
             dropdown.select_by_visible_text(array[1])
         else:
             print('elements not found')
+            return flag
+            
+        validFlag = 0
+        
+        if(elem.is_enabled()):
+            print("Pass")
+            validFlag =1 
             
         
             

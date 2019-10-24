@@ -30,7 +30,7 @@ class Button:
         except NoSuchElementException :
             flag =0
             pass 
-    
+
         
         try:
            
@@ -75,19 +75,23 @@ class Button:
         except NoSuchElementException :
             flag =0
             pass 
+        
+        try:
+            if(flag==0):
+               temp = "//*[contains(@value,'"+array[1]+"')]"
+               elem = driver.find_element_by_xpath(temp)
+               flag=1
+               print(temp)
+               print('this is @contains value')
+        except NoSuchElementException:
+            flag=0
+            pass   
             
 
         driver.implicitly_wait(2)
         
         validFlag = 0 
-        if(flag==1):
-             try:
-                if(elem.is_enabled()):
-                    print('pass')
-                    validFlag = 1 
-             except:
-                print('valid flag didnt work')
-                pass
+        
             
              try:
                 elem.click()
@@ -102,6 +106,20 @@ class Button:
        
         else:
             print('element not found')
+            
+        windowhandle = driver.window_handles
+        if(len(windowhandle)>1):
+            switchwindow = driver.window_handles[-1]
+            driver.switch_to_window(switchwindow)
+            
+        if(flag==1):
+             try:
+                if(elem.is_enabled()):
+                    print('pass')
+                    validFlag = 1 
+             except:
+                print('valid flag didnt work')
+                pass
         
         return flag and validFlag    
             

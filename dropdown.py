@@ -19,7 +19,7 @@ class Dropdown:
                 flag=1
                 temp = "//*[text()='"+ array[1]+"']/.."
                 elem = driver.find_element_by_xpath(temp)
-                print('super')
+                print('this is by super')
         except NoSuchElementException:
                 flag=0
                 pass
@@ -29,7 +29,7 @@ class Dropdown:
                 flag =1 
                 temp = "//*[@title = '"+array[3]+"']"
                 elem = driver.find_element_by_xpath(temp)
-                print('@title')
+                print('this is by @title')
         except NoSuchElementException:
                 flag=0
                 pass
@@ -40,7 +40,7 @@ class Dropdown:
                 flag =1 
                 temp = "//*[text()  = '"+array[3]+"']"
                 elem = driver.find_element_by_xpath(temp)
-                print('text')
+                print('this is by text')
         except NoSuchElementException:
                 flag=0
                 pass

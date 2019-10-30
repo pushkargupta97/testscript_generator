@@ -26,7 +26,7 @@ class Button:
                 temp ="//button[@class='"+ array[1]+"']"
                 elem = driver.find_element_by_xpath(temp)
                 flag=1 
-                print('this is @class button')
+                print('this is by //button_@class')
         except NoSuchElementException :
             flag =0
             pass 
@@ -37,7 +37,7 @@ class Button:
             if(flag==0):
                elem = driver.find_element_by_link_text(array[1])
                flag=1 
-               print('this is link text() button')
+               print('this is by link text()')
        
         except NoSuchElementException:
            
@@ -49,7 +49,7 @@ class Button:
                 temp= "//*[@class='"+array[1]+"']"
                 elem = driver.find_element_by_xpath(temp)
                 flag=1 
-                print('this is @class')
+                print('this is by @class')
                 
         except NoSuchElementException :
             flag =0
@@ -59,7 +59,7 @@ class Button:
                 temp ="//button[text()='"+ array[1]+"']"
                 elem = driver.find_element_by_xpath(temp)
                 flag=1 
-                print('this is text() button')
+                print('this is by //button_text()')
                
         except NoSuchElementException :
             flag =0
@@ -70,7 +70,7 @@ class Button:
                 temp ="//*[text()='"+ array[1]+"']"
                 elem = driver.find_element_by_xpath(temp)
                 flag=1 
-                print('this is text')
+                print('this is by text')
                 
         except NoSuchElementException :
             flag =0
@@ -82,7 +82,7 @@ class Button:
                elem = driver.find_element_by_xpath(temp)
                flag=1
                print(temp)
-               print('this is @contains value')
+               print('this is by contains @value')
         except NoSuchElementException:
             flag=0
             pass   

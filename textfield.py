@@ -17,7 +17,7 @@ class Textfield:
                 flag = 1
                 temp = "//input[contains(@text,'"+array[3]+"')]"
                 inputbox = driver.find_element_by_xpath(temp)
-                print('this is contains text')
+                print('this is by contains @text')
         except NoSuchElementException :
             flag =0
             pass
@@ -27,7 +27,7 @@ class Textfield:
                 flag = 1
                 temp = "//input[@title = '"+array[3]+"']"
                 inputbox = driver.find_element_by_xpath(temp)
-                print('this is title')
+                print('this is by //input_title')
         except NoSuchElementException :
             flag =0
             pass
@@ -37,7 +37,7 @@ class Textfield:
                 flag = 1
                 temp = "//input[@id = '"+array[3]+"']"
                 inputbox = driver.find_element_by_xpath(temp)
-                print('this is id')
+                print('this is by //input_@id')
         except NoSuchElementException :
             flag =0
             pass
@@ -47,7 +47,7 @@ class Textfield:
                 flag = 1
                 temp = "//input[contains(@name,'"+array[3]+"')]"
                 inputbox = driver.find_element_by_xpath(temp)
-                print('this is contains name')
+                print('this is by contains @name')
         except NoSuchElementException :
             flag =0
             pass
@@ -58,7 +58,7 @@ class Textfield:
                elem = driver.find_element_by_xpath(temp)
                flag=1
                print(temp)
-               print('this is @contains value')
+               print('this is contains @value')
         except NoSuchElementException:
             flag=0
             pass            
@@ -70,7 +70,7 @@ class Textfield:
                 flag = 1
                 temp = "//input[contains(@name,'"+array[3]+"')]"
                 inputbox = driver.find_element_by_link_text(array[3])
-                print('link text')
+                print('this is by link text')
         except NoSuchElementException :
             flag =0
             pass
@@ -80,7 +80,7 @@ class Textfield:
                 flag = 1
                 temp = "//*[contains(text(),'"+array[3]+"')]//..//input"
                 inputbox = driver.find_element_by_xpath(temp)
-                print('this is contains placeholder')
+                print('this is by contains placeholder')
         except NoSuchElementException :
             flag =0
             pass    

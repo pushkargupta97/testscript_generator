@@ -3,6 +3,7 @@ from button import Button
 from textfield import Textfield
 from dropdown import Dropdown
 import model
+import pandas as pd
 
 from selenium import webdriver
 
@@ -20,9 +21,11 @@ sample2 = ["opem 'www.mfs.com'",
           "enter text 'Mutual Fund' in the 'Search' box"]
 
 
-sample3 = ["open 'www.mfs.com'",
-          "click on 'left-container'", 
-          "select 'Australia' from 'Change your location' dropdown list'"]
+# =============================================================================
+# sample3 = ["open 'www.mfs.com'",
+#           "click on 'left-container'", 
+#           "select 'Australia' from 'Change your location' dropdown list'"]
+# =============================================================================
 
 sample4 = ["open 'www.mfs.com'",
           "'Register' is clicked",
@@ -35,24 +38,27 @@ sample4 = ["open 'www.mfs.com'",
           "Click on 'Complete'"
           ]
 
-sample5 = ["open 'www.mfs.com",
-           "click on 'INDIVIDUAL INVESTOR'",
-         "select 'UNITED STATES' from 'Change your location' dropdown",
-         "select 'INDIVIDUAL INVESTOR' from 'Select your role'"
-         ]
+# =============================================================================
+# sample5 = ["open 'www.mfs.com",
+#            "click on 'INDIVIDUAL INVESTOR'",
+#          "select 'UNITED STATES' from 'Change your location' dropdown",
+#          "select 'INDIVIDUAL INVESTOR' from 'Select your role'"
+#          ]
+# =============================================================================
 
 
-sample6 = ["open 'www.amazon.in'",
-            "click on 'Best Sellers'",
-            "click on 'Movers and Shakers'",
-            "click on 'Don't Lose Out, Work Out!'",
-            "click on 'Add To Cart'"
-            ]
+# =============================================================================
+# sample6 = ["open 'www.amazon.in'",
+#             "click on 'Best Sellers'",
+#             "click on 'Movers and Shakers'",
+#             "click on 'Don't Lose Out, Work Out!'",
+#             "click on 'Add To Cart'"
+#             ]
+# =============================================================================
 sample6 = ["open 'www.amazon.in'",
             "click on 'Amazon Pay'",
-            "click on 'Movers and Shakers'",
-            "click on 'Don't Lose Out, Work Out!'",
-            "click on 'Add To Cart'"
+            "click on 'Your Offers'",
+            "click on 'Sign in'"
             ]
 
 
@@ -70,12 +76,15 @@ sample7 = ["open 'www.facebook.com'",
            "Click on 'Sign Up' to register"]
 
 
-sample8 =  ["open 'www.mfs.com'",
-          "'Login' is clicked",
-          "enter 'password' in 'userpassword'",
-          "ENTER 'BAT123' IN 'userid'",
-          "click on 'Login'"
-          ]
+# =============================================================================
+# sample8 =  ["open 'www.mfs.com'",
+#           "'Login' is clicked",
+#           "enter 'password' in 'userpassword'",
+#           "ENTER 'BAT123' IN 'userid'",
+#           "click on 'Login'"
+#           ]
+# =============================================================================
+
 sample9 = ["open 'www.geeksforgeeks.org'",
            "Click on 'GBlog'"]
 
@@ -93,17 +102,25 @@ sample10 = ["open 'www.publicissapient.com'",
             "click on 'Search'"
             ]
 
-sample11 = ["open 'careers.publicissapient.com'",
-            "Select 'Business Development' from 'Select a Discipline'dropdown",
-            "Select 'India, Gurgaon' from 'Select a Location' dropdown",
-            "Click on 'Search Jobs'"
-            ]
+# =============================================================================
+# sample11 = ["open 'careers.publicissapient.com'",
+#             "Select 'Business Development' from 'Select a Discipline'dropdown",
+#             "Select 'India, Gurgaon' from 'Select a Location' dropdown",
+#             "Click on 'Search Jobs'"
+#             ]
+# =============================================================================
 
 
 gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25537))
 driver = webdriver.Chrome()
 
-sample = sample10
+df = pd.read_excel(r"C:\Users\pusgupta\Desktop\testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
+mylist = df['Actions'].tolist()
+
+print(mylist)
+
+
+sample = mylist
 
 for sen in sample:
     

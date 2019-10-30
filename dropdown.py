@@ -7,6 +7,8 @@ from selenium.common.exceptions import NoSuchElementException
 class Dropdown:
     
     def action(self,sentence,driver):
+        
+        driver.implicitly_wait(1)
        
         array = sentence.split("'")
         flag = 0
@@ -57,7 +59,12 @@ class Dropdown:
         else:
             print('elements not found')
             return flag
-            
+        
+        windowhandle = driver.window_handles
+        if(len(windowhandle)>1):
+            switchwindow = driver.window_handles[-1]
+            driver.switch_to_window(switchwindow)
+               
         validFlag = 0
         
         if(elem.is_enabled()):

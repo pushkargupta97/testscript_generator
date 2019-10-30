@@ -17,7 +17,7 @@ class Button:
         array = sentence.split("'")
        
         flag = 0
-        driver.implicitly_wait(2)
+        driver.implicitly_wait(1)
         
   
             
@@ -88,38 +88,41 @@ class Button:
             pass   
             
 
-        driver.implicitly_wait(2)
+        driver.implicitly_wait(1)
         
         validFlag = 0 
         
-            
+        if(flag==1):
              try:
-                elem.click()
-                print("click")
-             except ElementNotInteractableException:
-                Hover = ActionChains(driver).move_to_element(elem).click().perform()
-                
-                print("NotInteractable Hover")
-             except ElementClickInterceptedException:
-                Hover = ActionChains(driver).move_to_element(elem).click().perform()
-                print("Intercepted hover")
-       
+                if(elem.is_displayed()):
+                    print('pass')
+                    validFlag = 1 
+             except:
+                print('valid flag didnt work')
+                pass
         else:
             print('element not found')
+        
+            
+        try:
+            elem.click()
+            print("click")
+        except ElementNotInteractableException:
+            Hover = ActionChains(driver).move_to_element(elem).click().perform()
+            
+            print("NotInteractable Hover")
+        except ElementClickInterceptedException:
+            Hover = ActionChains(driver).move_to_element(elem).click().perform()
+            print("Intercepted hover")
+       
+        
             
         windowhandle = driver.window_handles
         if(len(windowhandle)>1):
             switchwindow = driver.window_handles[-1]
             driver.switch_to_window(switchwindow)
             
-        if(flag==1):
-             try:
-                if(elem.is_enabled()):
-                    print('pass')
-                    validFlag = 1 
-             except:
-                print('valid flag didnt work')
-                pass
+        
         
         return flag and validFlag    
             

@@ -7,9 +7,11 @@ class Textfield:
     
     def action(self,sentence,driver):
        
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(1)
+        
         array = sentence.split("'")
         flag = 0 ;
+        
         try :
             if(flag == 0):
                 flag = 1

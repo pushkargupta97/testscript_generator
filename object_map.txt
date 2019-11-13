@@ -15,3 +15,9 @@
 13,Complete,"//*[contains(@value,'Complete')]"
 14,Register,//button[@class='Register']
 15,I Agree,//*[text()='I Agree']
+16,menu,//*[text()='menu']
+17,Careers,//button[@class='Careers']
+18,Search Jobs,//button[@class='Search Jobs']
+19,Keywords,"//*[contains(text(),'Keywords')]//..//input"
+20,Hupla,//*[text()='Program Management']/..
+21,Search,//button[text()='Search']

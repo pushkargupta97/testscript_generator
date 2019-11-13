@@ -125,10 +125,10 @@ with open('object_map.txt') as csv_file :
             dic[row[1]] = row[2]
 
 print(dic)
-gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25537))
+gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25536))
 driver = webdriver.Chrome()
 
-df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
+df = pd.read_excel(r"testcases.xlsx", sheet_name=0) # can also index sheet by name or fetch all sheets
 mylist = df['Actions'].tolist()
 
 print(mylist)

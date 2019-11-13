@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 
 class Textfield:
     
-    def action(self,sentence,driver):
+    def action(self,sentence,driver,dic):
        
         driver.implicitly_wait(1)
         
@@ -88,6 +88,17 @@ class Textfield:
         
         validFlag = 0
         
+        if(flag==0):
+            if array[3] in dic.keys():
+               try:
+                    temp = dic[array[3]]
+                    flag=1
+                    inputbox = driver.find_element_by_xpath(temp)
+                    print('element found in dictionary')
+               except NoSuchElementException:
+                    flag=0
+                    pass
+        
         if(flag == 1):
             inputbox.clear()
             inputbox.send_keys(array[1])
@@ -100,6 +111,11 @@ class Textfield:
                 print("fail")
         else:
             print('element not found')    
+        
+        if(flag==1):
+            if not array[3] in dic.keys():
+                dic[array[3]] = temp
+        
         return flag and validFlag
-        #inputbox.send_keys(Keys.ENTER)
+        
         

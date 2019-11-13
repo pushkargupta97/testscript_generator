@@ -7,13 +7,14 @@ import pandas as pd
 
 class Dropdown:
     
-    def action(self,sentence,driver):
+    def action(self,sentence,driver,dic):
         
         driver.implicitly_wait(1)
        
         array = sentence.split("'")
         flag = 0
         
+        temp = ""
         
         try:
             if(flag==0):
@@ -45,7 +46,18 @@ class Dropdown:
         except NoSuchElementException:
                 flag=0
                 pass
-
+        
+        if(flag==0):
+            if array[3] in dic.keys():
+               try:
+                    temp = dic[array[3]]
+                    flag=1
+                    elem = driver.find_element_by_xpath(temp)
+                    print('element found in dictionary')
+               except NoSuchElementException:
+                    flag=0
+                    pass
+            
         
         if(flag == 1):
             dropdown = Select(elem)
@@ -64,7 +76,10 @@ class Dropdown:
         if(elem.is_enabled()):
             print("Pass")
             validFlag =1 
-            
         
+        if(flag==1):
+            if not array[3] in dic.keys():
+                dic[array[3]] = temp 
+
             
         return flag and validFlag 

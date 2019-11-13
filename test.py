@@ -2,12 +2,15 @@ from get import Get
 from button import Button
 from textfield import Textfield
 from dropdown import Dropdown
+import model
 import pickle
 import pandas as pd
+import csv
 
 from selenium import webdriver
 
 from py4j.java_gateway import JavaGateway, GatewayParameters
+
 
 
 sample1= ["open 'www.mfs.com'",
@@ -110,17 +113,26 @@ sample10 = ["open 'www.publicissapient.com'",
 #             ]
 # =============================================================================
 
+dic = {}
 
+with open('object_map.txt') as csv_file :
+    csv_reader = csv.reader(csv_file,delimiter=',')
+    line_count = 0 
+    for row in csv_reader:
+        if line_count == 0 :
+            line_count += 1
+        else:
+            dic[row[1]] = row[2]
+
+print(dic)
 gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25537))
 driver = webdriver.Chrome()
 
-df = pd.read_excel(r"C:\Users\pusgupta\Desktop\testcases.xlsx", sheet_name=0) # can also index sheet by name or fetch all sheets
+df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
 mylist = df['Actions'].tolist()
 
 print(mylist)
 
-vectorizer = pickle.load(open('Tfidfmodel.pickle', 'rb'))
-classifier = pickle.load(open('classifier.pickle', 'rb'))
 
 sample = mylist
 
@@ -136,7 +148,7 @@ for sen in sample:
     if(classifier.predict(testcase) ==0):
         print("button")
         button = Button()
-        status_flag  = button.action(str(sen),driver) 
+        status_flag  = button.action(str(sen),driver,dic) 
         if(status_flag == 1 ):
             gateway.entry_point.reportPass('testcase :'+sen+' is succesful')
         else:
@@ -147,7 +159,7 @@ for sen in sample:
     if(classifier.predict(testcase) ==3):
         print("dropdown")
         dropdown = Dropdown()
-        status_flag = dropdown.action(str(sen),driver)
+        status_flag = dropdown.action(str(sen),driver,dic)
         if(status_flag == 1 ):
             gateway.entry_point.reportPass('testcase :'+sen+' is succesful')
         else:
@@ -168,12 +180,17 @@ for sen in sample:
         
         print("textfield")
         textfield = Textfield()
-        status_flag = textfield.action(str(sen),driver)
+        status_flag = textfield.action(str(sen),driver,dic)
         if(status_flag == 1 ):
             gateway.entry_point.reportPass('testcase :'+sen+' is succesful')
         else:
             gateway.entry_point.reportFail('testcase :'+sen+' is fail')
             break
-        
+
+
+df = pd.DataFrame( [(k,v) for k,v in dic.items()],columns = ['key','value'])
+df.to_csv('object_map.txt',sep = ',')
+
+       
 gateway.entry_point.endAll()
 print('program has ended')

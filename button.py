@@ -12,14 +12,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 class Button:
         
-    def action(self,sentence,driver):  
+    def action(self,sentence,driver,dic):  
             
         array = sentence.split("'")
        
         flag = 0
         driver.implicitly_wait(1)
         
-  
+        temp=""
             
         try :
             if(flag==0):
@@ -86,11 +86,22 @@ class Button:
         except NoSuchElementException:
             flag=0
             pass   
-            
-
-        driver.implicitly_wait(1)
         
         validFlag = 0 
+        
+        if(flag==0):
+            if array[1] in dic.keys():
+               try:
+                    temp = dic[array[1]]
+                    print(temp)
+                    flag=1
+                    elem = driver.find_element_by_xpath(dic[array[1]])
+                    print('element found in dictionary')
+               except NoSuchElementException:
+                    flag=0
+                    pass
+        
+        driver.implicitly_wait(1)
         
         if(flag==1):
              try:
@@ -103,17 +114,17 @@ class Button:
         else:
             print('element not found')
         
-            
-        try:
-            elem.click()
-            print("click")
-        except ElementNotInteractableException:
-            Hover = ActionChains(driver).move_to_element(elem).click().perform()
-            
-            print("NotInteractable Hover")
-        except ElementClickInterceptedException:
-            Hover = ActionChains(driver).move_to_element(elem).click().perform()
-            print("Intercepted hover")
+        if(flag==1):   
+            try:
+                elem.click()
+                print("click")
+            except ElementNotInteractableException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                
+                print("NotInteractable Hover")
+            except ElementClickInterceptedException:
+                Hover = ActionChains(driver).move_to_element(elem).click().perform()
+                print("Intercepted hover")
        
         
             
@@ -121,6 +132,10 @@ class Button:
         if(len(windowhandle)>1):
             switchwindow = driver.window_handles[-1]
             driver.switch_to_window(switchwindow)
+            
+        if(flag==1):
+            if not array[1] in dic.keys():
+                dic[array[1]] = temp 
             
         
         

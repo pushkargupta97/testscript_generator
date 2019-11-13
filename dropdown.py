@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+import pandas as pd
 
 
 
@@ -44,14 +45,7 @@ class Dropdown:
         except NoSuchElementException:
                 flag=0
                 pass
-            
-        
-            
-            
-        #print(array[1])
-        #print(array[3])
-        #temp = "//*[text()='"+ array[3]+"']/.."
-        
+
         
         if(flag == 1):
             dropdown = Select(elem)

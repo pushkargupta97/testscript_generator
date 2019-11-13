@@ -2,7 +2,7 @@ from get import Get
 from button import Button
 from textfield import Textfield
 from dropdown import Dropdown
-import model
+import pickle
 import pandas as pd
 
 from selenium import webdriver
@@ -111,14 +111,16 @@ sample10 = ["open 'www.publicissapient.com'",
 # =============================================================================
 
 
-gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25536))
+gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25537))
 driver = webdriver.Chrome()
 
-df = pd.read_excel(r"C:\Users\adinuwal\Desktop\testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
+df = pd.read_excel(r"C:\Users\pusgupta\Desktop\testcases.xlsx", sheet_name=0) # can also index sheet by name or fetch all sheets
 mylist = df['Actions'].tolist()
 
 print(mylist)
 
+vectorizer = pickle.load(open('Tfidfmodel.pickle', 'rb'))
+classifier = pickle.load(open('classifier.pickle', 'rb'))
 
 sample = mylist
 

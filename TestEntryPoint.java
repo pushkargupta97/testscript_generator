@@ -34,6 +34,10 @@ public class TestEntryPoint {
 	public void reportFail(String usermsg) {
 		test.log(LogStatus.FAIL, usermsg);
 	}
+
+	public void reportScenario(String usermsg){
+		test.log(LogStatus.PASS, usermsg);
+	}
 	
 	public ExtentTest getTest() {
 		return test ;

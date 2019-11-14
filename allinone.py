@@ -18,8 +18,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
-df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
+df = pd.read_excel(r"testcases.xlsx", sheet_name='RunTest') # can also index sheet by name or fetch all sheets
 mylist = df['Actions'].tolist()
+
+sc = df['Scenario'].to_list()
+
+scnames = [ a for a in sc if isinstance(a,str) ]
+print(scnames)
 
 
 reviews = load_files('Functionalties')
@@ -441,6 +446,7 @@ for sen in sample:
             break
         
     if(classifier.predict(testcase) ==1):
+        gateway.entry_point.reportScenario('***** Running TestCase :'+scnames.pop(0)+' *****')
         print("get")
         get = Get()
         status_flag = get.browse(str(sen),driver)

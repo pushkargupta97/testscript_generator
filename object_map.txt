@@ -21,3 +21,14 @@
 19,Keywords,"//*[contains(text(),'Keywords')]//..//input"
 20,Hupla,//*[text()='Program Management']/..
 21,Search,//button[text()='Search']
+22,Menu,//*[text()='Menu']
+23,Manage Your Account,//*[text()='Manage Your Account']
+24,Tax Center,//button[@class='Tax Center']
+25,Cost-Basis Reporting,//button[@class='Cost-Basis Reporting']
+26,Education & Support Resources,//button[@class='Education & Support Resources']
+27,Questions and Answers,//button[@class='Questions and Answers']
+28,Home,//button[@class='Home']
+29,Shareholder,//*[text()='Shareholder']
+30,customerId.value,//input[@id = 'customerId.value']
+31,customerPassword.value,//input[@id = 'customerPassword.value']
+32,Continue,"//*[contains(@value,'Continue')]"

@@ -12,6 +12,8 @@ from selenium import webdriver
 from py4j.java_gateway import JavaGateway, GatewayParameters
 
 
+df = pd.read_excel(r"testcases.xlsx", sheet_name='RunTest') # can also index sheet by name or fetch all sheets
+mylist = df['Actions'].tolist()
 
 sample1= ["open 'www.mfs.com'",
          "click on 'Menu'",
@@ -128,15 +130,13 @@ print(dic)
 gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25536))
 driver = webdriver.Chrome()
 
-df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
-mylist = df['Actions'].tolist()
 
 print(mylist)
 
 
 sample = mylist
 
-for sen in sample7:
+for sen in sample:
     
     
     

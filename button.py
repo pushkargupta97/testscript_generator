@@ -126,16 +126,16 @@ class Button:
                 Hover = ActionChains(driver).move_to_element(elem).click().perform()
                 print("Intercepted hover")
        
-        
+        if(flag==1):
+            if not array[1] in dic.keys():
+                dic[array[1]] = temp 
             
         windowhandle = driver.window_handles
         if(len(windowhandle)>1):
             switchwindow = driver.window_handles[-1]
             driver.switch_to_window(switchwindow)
             
-        if(flag==1):
-            if not array[1] in dic.keys():
-                dic[array[1]] = temp 
+        
             
         
         

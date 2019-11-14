@@ -1,4 +1,6 @@
-
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -10,8 +12,11 @@ public class TestEntryPoint {
 	private ExtentTest test;
 	private ExtentReports report;
 	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	
 	public TestEntryPoint() {
-		report = new ExtentReports(System.getProperty("user.dir") + "\\ExtentResults.html");
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		report = new ExtentReports(System.getProperty("user.dir") + "\\extent_report\\"+sdf.format(timestamp)+".html");
 		test = report.startTest("ExtentDemo");
 	}
 	
@@ -44,7 +49,7 @@ public class TestEntryPoint {
 	}
 	
 	public static void main(String[] args) {
-		GatewayServer gatewayServer = new GatewayServer(new TestEntryPoint(),25537);
+		GatewayServer gatewayServer = new GatewayServer(new TestEntryPoint(),25536);
 		gatewayServer.start();
 		System.out.println("Gateway Server Started");
 	}

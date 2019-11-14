@@ -39,35 +39,4 @@ X_test = vectorizer.transform(X_test).toarray()
 classifier = LogisticRegression(random_state=42, solver='newton-cg', max_iter=1000, multi_class='multinomial', n_jobs=-1)
 classifier.fit(X_train, Y_train)
 
-"""print("Solver = 'newton-cg'")
-print("Accuracy : ", accuracy_score(Y_test, classifier.predict(X_test)))
-print("F1 Score : ", f1_score(Y_test, classifier.predict(X_test),average='macro'))
-print("AUC : ", roc_auc_score(Y_test,  classifier.predict(X_test)))
-print()
 
-classifier = LogisticRegression(random_state=42, solver='lbfgs', max_iter=1000, multi_class='multinomial', n_jobs=-1)
-classifier.fit(X_train, Y_train)
-
-print("Solver = 'lbfgs'")
-print("Accuracy : ", accuracy_score(Y_test, classifier.predict(X_test)))
-print("F1 Score : ", f1_score(Y_test,classifier.predict(X_test),average='macro'))
-print("AUC : ", roc_auc_score(Y_test,  classifier.predict(X_test),average='macro'))
-print()
-
-classifier = LogisticRegression(random_state=42, solver='sag', max_iter=1000, multi_class='multinomial', n_jobs=-1)
-classifier.fit(X_train, Y_train)
-
-print("Solver = 'sag'")
-print("Accuracy : ", accuracy_score(Y_test, classifier.predict(X_test)))
-print("F1 Score : ", f1_score(Y_test, classifier.predict(X_test),average='macro'))
-print("AUC : ", roc_auc_score(Y_test,  classifier.predict(X_test),average='macro'))
-print()
-
-classifier = LogisticRegression(random_state=42, solver='saga', max_iter=1000, multi_class='multinomial', n_jobs=-1)
-classifier.fit(X_train, Y_train)
-
-print("Solver = 'saga'")
-print("Accuracy : ", accuracy_score(Y_test, classifier.predict(X_test)))
-print("F1 Score : ", f1_score(Y_test, classifier.predict(X_test),average='macro'))
-print("AUC : ", roc_auc_score(Y_test,  classifier.predict(X_test),average='macro'))
-print()"""

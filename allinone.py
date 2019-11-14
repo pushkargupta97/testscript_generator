@@ -18,6 +18,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
+df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
+mylist = df['Actions'].tolist()
 
 
 reviews = load_files('Functionalties')
@@ -402,8 +404,6 @@ print(dic)
 gateway = JavaGateway(gateway_parameters=GatewayParameters(port=25536))
 driver = webdriver.Chrome()
 
-df = pd.read_excel(r"testcases.xlsx", sheet_name=1) # can also index sheet by name or fetch all sheets
-mylist = df['Actions'].tolist()
 
 print(mylist)
 

@@ -32,3 +32,7 @@
 30,customerId.value,//input[@id = 'customerId.value']
 31,customerPassword.value,//input[@id = 'customerPassword.value']
 32,Continue,"//*[contains(@value,'Continue')]"
+33,Login2,//*[contains(@class='btn login_btn visible-lg visible-md login-btn-margin')]
+34,Login,//button[@class='Login']
+35,userid,//input[@id = 'userid']
+36,userpassword,//input[@id = 'userpassword']

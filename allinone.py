@@ -17,6 +17,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+import requests
+import json
 
 df = pd.read_excel(r"testcases.xlsx", sheet_name='RunTest') # can also index sheet by name or fetch all sheets
 mylist = df['Actions'].tolist()
@@ -435,7 +437,7 @@ for sen in sample:
             break
             
         
-    if(classifier.predict(testcase) ==3):
+    if(classifier.predict(testcase) ==6):
         print("dropdown")
         dropdown = Dropdown()
         status_flag = dropdown.action(str(sen),driver,dic)
@@ -456,7 +458,7 @@ for sen in sample:
             gateway.entry_point.reportFail('testcase :'+sen+' is fail')
             break
         
-    if(classifier.predict(testcase) ==2):
+    if(classifier.predict(testcase) ==5):
         
         print("textfield")
         textfield = Textfield()
@@ -466,6 +468,70 @@ for sen in sample:
         else:
             gateway.entry_point.reportFail('testcase :'+sen+' is fail')
             break
+        
+    if(classifier.predict(testcase) == 3):
+        gateway.entry_point.reportPass('***** Running WebService Test*****')
+        print('getservice')
+        array = sen.split("'")
+         
+        URL = array[1]
+        PARAMS = array[3]
+        if(PARAMS == 'null' or PARAMS == 'no'):
+             r = requests.get(url=URL)
+        else:
+             r = requests.get(url = URL, params = PARAMS) 
+         
+        data = json.loads(r.content)
+        print(data)
+        print(r.status_code)
+        
+        if(r.status_code == 200):
+            gateway.entry_point.reportPass('status code is : 200 OK')
+            givenValue = array[5]
+            print(givenValue)
+            if(str(data)==givenValue):
+                gateway.entry_point.reportPass('service verified')
+            else: 
+                gateway.entry_point.reportFail('response not matching')
+        else:
+            gateway.entry_point.reportFail('status code is : '+r.status_code)
+          
+            
+    if(classifier.predict(testcase) == 2):
+        gateway.entry_point.reportPass('***** Running WebService Test*****')
+        print('post service')
+        array = sen.split("'")
+         
+        URL = array[1]
+        PARAMS = array[3]
+        if(PARAMS == 'null' or PARAMS == 'no'):
+            r = requests.post(url=URL)
+        else:
+            r = requests.post(url = URL, params = PARAMS) 
+         
+        data = json.loads(r.content)
+         
+         
+        if(r.status_code == 200):
+            gateway.entry_point.reportPass('status code is : 200 OK')
+        else:
+            gateway.entry_point.reportFail('status code is : '+r.status_code)
+         
+        givenValue = array[5]
+        if(str(data)==givenValue):
+            gateway.entry_point.reportPass('service verified')
+        else: 
+            gateway.entry_point.reportFail('response not matching')
+            
+    if(classifier.predict(testcase) == 4):
+        print('validation')
+        array = sen.split("'")
+        url = array[1]
+        if(driver.current_url == url):
+           gateway.entry_point.reportPass('validation done: test scenario succesful')
+        else:
+           gateway.entry_point.reportFail('validation fail , test scenario failed') 
+        
 
 
 df = pd.DataFrame( [(k,v) for k,v in dic.items()],columns = ['key','value'])
